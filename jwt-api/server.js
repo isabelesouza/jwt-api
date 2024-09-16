@@ -4,31 +4,28 @@ const jwt = require('jsonwebtoken');
 const app = express();
 const port = 3000;
 
-// Middleware para permitir o recebimento de dados em JSON
+// Middleware para receber JSON no corpo da requisição
 app.use(express.json());
 
-// Chave secreta para assinar o token JWT (você pode usar qualquer string)
+// Chave secreta para assinar o JWT
 const SECRET_KEY = 'sua_chave_secreta';
 
-// Rota para gerar o token JWT
+// Definir a rota /generate-jwt para gerar o token JWT
 app.post('/generate-jwt', (req, res) => {
   const { email, password } = req.body;
 
-  // Aqui você pode validar o usuário. Exemplo básico:
+  // Exemplo básico de validação de usuário
   if (email === 'usuario@exemplo.com' && password === 'senha123') {
-    // Dados que vamos incluir no token (payload)
-    const payload = {
-      email: email,
-    };
+    const payload = { email: email };
 
-    // Gerar o token JWT com duração de 1 hora
+    // Gerar o token JWT com validade de 1 hora
     const token = jwt.sign(payload, SECRET_KEY, { expiresIn: '1h' });
 
-    // Retornar o token
+    // Retornar o token JWT como resposta
     res.json({ token });
   } else {
-    // Se o e-mail ou senha estiver errado, retornamos um erro
-    res.status(401).json({ error: 'E-mail ou senha inválido' });
+    // Retornar erro 401 se as credenciais estiverem incorretas
+    res.status(401).json({ error: 'E-mail ou senha inválidos' });
   }
 });
 
