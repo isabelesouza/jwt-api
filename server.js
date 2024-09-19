@@ -1,12 +1,12 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const Parse = require('parse/node'); // Importar o SDK do Parse
+const Parse = require('parse/node'); 
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Habilitar CORS para permitir requisições do seu frontend
+// Habilitar CORS 
 app.use(cors({
   origin: 'https://comunidade-conectada-modificado.vercel.app' // Permitir apenas este domínio
 }));
@@ -32,7 +32,7 @@ app.post('/generate-jwt', async (req, res) => {
     // Retornar o token JWT para o frontend
     res.json({ token });
   } catch (error) {
-    // Se houver erro no login, retornar uma mensagem de erro
+    
     res.status(401).json({ error: 'E-mail ou senha inválidos' });
   }
 });
