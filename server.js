@@ -1,23 +1,23 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const cors = require('cors'); // Importar o middleware CORS
+const cors = require('cors'); // Importar o CORS
 
 const app = express();
 const port = 3000;
 
-// Habilitar CORS para permitir requisições de outros domínios
+// Habilitar CORS 
 app.use(cors());
 
 app.use(express.json());
 
-// Chave secreta para assinar o token JWT
+
 const SECRET_KEY = 'sua_chave_secreta';
 
 // Rota para gerar o token JWT
 app.post('/generate-jwt', (req, res) => {
   const { email, password } = req.body;
 
-  // Exemplo básico de validação de usuário
+  
   if (email === 'usuario@exemplo.com' && password === 'senha123') {
     const payload = { email };
 
