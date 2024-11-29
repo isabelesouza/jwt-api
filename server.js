@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const Parse = require('parse/node'); 
 
-const app = express();
+const app = express();  
 const port = process.env.PORT || 3000;
 
 // Habilitar CORS 
